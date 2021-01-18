@@ -70,7 +70,7 @@ class Main {
 
     // Ask again to add to ArrayList
     boolean flag = true;
-    while (flag) // = true;
+    while (flag)
     {
       System.out.println("Would you like to add more names and score?");
       Answer = input.nextLine().toLowerCase();
