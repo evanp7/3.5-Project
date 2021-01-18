@@ -1,0 +1,65 @@
+For reference: 
+https://www.w3schools.com/java/java_arraylist.asp -- arraylist reference
+https://stackoverflow.com/questions/5343689/java-reading-a-file-into-an-arraylist -- Reading file to arraylist
+https://stackoverflow.com/questions/6548157/how-to-write-an-arraylist-of-strings-into-a-text-file -- write arraylist to file
+https://stackoverflow.com/questions/19595368/reading-the-next-line-in-a-text-file -- Reading from file
+
+// Bubble sort method
+
+class Main {
+  public static void main(String[] args) {
+    
+    *Here, measure the number of lines 
+
+    ArrayList<string> nsFile   // Read from the file and store to the arraylists, also resizes itself
+
+    // Adding to scores array
+    print "would you like to input scores and names?"
+    
+    if userInput is "yes"   // make this not case sensitive
+    {
+      print "Input the name"
+      scanner get userInput
+      write to nsFile         // Actually, this should be writing to ArrayList
+      print "Input the score"
+      scanner get userInput
+      write to nsFile
+    }
+
+    // Ask again
+    boolean flag = false;
+    print "Would you like to add more names and scores?"
+
+    while flag = true
+      if userInput is yes
+      {
+        print "Input the name"
+        scanner get userInput
+        write to nsFile         
+        print "Input the score"
+        scanner get userInput
+        write to nsFile
+        flag = true
+       } 
+      else 
+      {
+        flag = false
+      }
+
+    // Bubble sort method
+    use bubble method here
+
+    // Output
+    sorted data output
+
+    // Ask user
+    print "Do you want to save to a file?"
+    
+    if userInput is "yes"
+    {
+    write to file
+    }
+
+    else
+  }
+}
