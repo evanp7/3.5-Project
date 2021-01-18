@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.File;
@@ -39,21 +38,35 @@ class Main {
     Scanner nameListReader = new Scanner (nameListFile); // File reader
     Scanner scoreListReader = new Scanner (scoreListFile);
 
-    // name ArrayList
+    // Name and score ArrayList
     ArrayList<String> nameList = new ArrayList<String>();
-    // Writing file to name ArrayList
-    Scanner reader = new Scanner ("file.txt");
-    while (reader.hasNext())
-    {
-      nameList.add(reader.next());
-    }
-    reader.close();
-    // score ArrayList
     ArrayList<Integer> scoreList = new ArrayList<Integer>();
 
     // Temporary ArrayList, copies content from original ArrayLists -- This should not share same reference as the original
     ArrayList<String> nameTemp = new ArrayList<String>(nameList);
-    ArrayList<Integer> scoreTemp = new ArrayList<Integer>(scoreList);
+    ArrayList<Integer> scoreTemp = new ArrayList<Integer>(scoreList);   
+
+
+    // Writing file to temporary ArrayLists
+    Scanner reader = new Scanner ("file.txt");
+    // For loop to write the file to the ArrayLists
+    for (int i=0; i<=3; i++)
+    {
+      for (int index=i; index<=scoreList.size(); index++)
+      {
+        reader.nextInt();
+        nameTemp.add(file.txt(i));
+        scoreTemp.add(reader.next(index));
+      }
+    }
+    // while (reader.hasNext())
+    // {
+    //   nameList.add(reader.next());
+    // }
+    // reader.close();
+
+
+    // Measure number of lines 
 
 
     //Adding names and scores to temp ArrayList
@@ -105,7 +118,7 @@ class Main {
 
 
     System.out.println(nameList);
-        System.out.println(nameTemp);
+    System.out.println(nameTemp);
 
 
 
