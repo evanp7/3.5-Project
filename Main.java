@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.File;
@@ -40,7 +41,7 @@ class Main {
 
     // name ArrayList
     ArrayList<String> nameList = new ArrayList<String>();
-    // Writing file to ArrayList
+    // Writing file to name ArrayList
     Scanner reader = new Scanner ("file.txt");
     while (reader.hasNext())
     {
@@ -49,9 +50,10 @@ class Main {
     reader.close();
     // score ArrayList
     ArrayList<Integer> scoreList = new ArrayList<Integer>();
-    // Temporary ArrayList
-    ArrayList<String> nameTemp = new ArrayList<String>();
-    ArrayList<Integer> scoreTemp = new ArrayList<Integer>();
+
+    // Temporary ArrayList, copies content from original ArrayLists -- This should not share same reference as the original
+    ArrayList<String> nameTemp = new ArrayList<String>(nameList);
+    ArrayList<Integer> scoreTemp = new ArrayList<Integer>(scoreList);
 
 
     //Adding names and scores to temp ArrayList
@@ -64,7 +66,7 @@ class Main {
       Answer = input.nextLine().toLowerCase();
       nameTemp.add(Answer);
       System.out.println("Enter the score");
-      scoreAnswer = Int.parseInt();
+      scoreAnswer = Integer.parseInt(input.nextLine());
       scoreTemp.add(scoreAnswer);
     }
     else
@@ -85,7 +87,7 @@ class Main {
         Answer = input.nextLine().toLowerCase();
         nameTemp.add(Answer);
         System.out.println("Enter the score");
-        scoreAnswer = Int.parseInt();
+        scoreAnswer = Integer.parseInt(input.nextLine());
         scoreTemp.add(scoreAnswer);
         flag = true;
       }
@@ -96,13 +98,15 @@ class Main {
     }
     
     // Write ArrayList to file.txt
-    
-    FileWriter nameListWriter = new FileWriter ("file.txt"); // File writer
-    FileWriter scoreListWriter = new FileWriter ("file.txt");
+
+    // FileWriter nameListWriter = new FileWriter ("file.txt"); // File writer
+    // FileWriter scoreListWriter = new FileWriter ("file.txt");
     
 
 
     System.out.println(nameList);
+        System.out.println(nameTemp);
+
 
 
 
