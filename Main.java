@@ -49,8 +49,12 @@ class Main {
     reader.close();
     // score ArrayList
     ArrayList<Integer> scoreList = new ArrayList<Integer>();
+    // Temporary ArrayList
+    ArrayList<String> nameTemp = new ArrayList<String>();
+    ArrayList<Integer> scoreTemp = new ArrayList<Integer>();
 
-    //Adding scores to ArrayList
+
+    //Adding names and scores to temp ArrayList
     System.out.println ("Would you like to add names and scores?");
     Answer = input.nextLine().toLowerCase();
     
@@ -58,17 +62,17 @@ class Main {
     {
       System.out.println("Enter the name");
       Answer = input.nextLine().toLowerCase();
-      nameList.add(Answer);
+      nameTemp.add(Answer);
       System.out.println("Enter the score");
       scoreAnswer = Int.parseInt();
-      scoreList.add(scoreAnswer);
+      scoreTemp.add(scoreAnswer);
     }
     else
       System.out.println("You've exited the program. Here is the current list:");
       System.out.println(nameList);
 
 
-    // Ask again to add to ArrayList
+    // Ask again to add to temp ArrayList
     boolean flag = true;
     while (flag)
     {
@@ -79,10 +83,10 @@ class Main {
       {
         System.out.println("Enter the name");
         Answer = input.nextLine().toLowerCase();
-        nameList.add(Answer);
+        nameTemp.add(Answer);
         System.out.println("Enter the score");
-        scoreAnswer =Int.parseInt();
-        scoreList.add(scoreAnswer);
+        scoreAnswer = Int.parseInt();
+        scoreTemp.add(scoreAnswer);
         flag = true;
       }
       else
