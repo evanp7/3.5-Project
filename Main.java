@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 class Main {
@@ -55,8 +56,8 @@ class Main {
       for (int index=i; index<=scoreList.size(); index++)
       {
         reader.nextInt();
-        nameTemp.add(file.txt(i));
-        scoreTemp.add(reader.next(index));
+        nameTemp.add(reader.next(i));
+        scoreTemp.add(reader.nextInt(index));
       }
     }
     // while (reader.hasNext())
@@ -67,7 +68,13 @@ class Main {
 
 
     // Measure number of lines 
-
+    Scanner lineCounter = new Scanner (new FileReader("file.txt"));
+    int numofLines = 0;
+    While (lineCounter.hasNextLine());
+    {
+      lineCounter.nextLine();
+      numofLines ++;
+    }
 
     //Adding names and scores to temp ArrayList
     System.out.println ("Would you like to add names and scores?");
