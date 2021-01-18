@@ -96,8 +96,9 @@ class Main {
     }
     
     // Write ArrayList to file.txt
-    // FileWriter nameListWriter = new FileWriter ("file.txt"); // File writer
-    // FileWriter scoreListWriter = new FileWriter ("file.txt");
+    
+    FileWriter nameListWriter = new FileWriter ("file.txt"); // File writer
+    FileWriter scoreListWriter = new FileWriter ("file.txt");
     
 
 
