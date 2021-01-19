@@ -5,11 +5,18 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 class Main {
-  static String[] bubbleMethod (ArrayList<String> nameList, ArrayList<Integer> scoreList)
+
+  static ArrayList<String> nameList; // Is this how class variable should be? and Method don't call for it in the ()?
+  static ArrayList<String> nameTemp;
+  static ArrayList<Integer> scoreList;
+  static ArrayList<Integer> scoreTemp;
+
+  static String[] bubbleMethod () //ArrayList<String> nameList, ArrayList<String> tempName
   {
-    String [] nametempSwap; // to hold swap
-    int [] numtempSwap;
+    String nametempSwap; // to hold swap
+    int numtempSwap;
 
     // Loop to sort
     for (int i=0; i<nameList.size(); i++)
@@ -25,9 +32,8 @@ class Main {
       }
     }
     return nameList;
-  
     // Loop to sort
-    for (int i=0; i<scoreList.size(); i++)
+    for (int i=0; i<scoreList.size(); i++) //scoreTemp?
     {
       for (int j=0; j<scoreList.size(); j++)
       {
@@ -39,7 +45,7 @@ class Main {
         }
       }
     }
-    return nameList;
+    return scoreList;
   }
 
 
@@ -67,18 +73,16 @@ class Main {
 
 
     Scanner reader = new Scanner ("file.txt");
-    // For loop to write the file to the ArrayLists and temp ArrayLists
+    // For loop to write the file to the ArrayLists
     for (int i=0; i<=3; i++)
     {
-      for (int index=i; index<=scoreList.size(); index++)
-      {
         reader.nextInt();
         nameList.add(reader.next(i));
-        scoreList.add(reader.nextInt(index));
-        nameTemp.add(reader.next(i));
-        scoreTemp.add(reader.nextInt(index));
+    }
 
-      }
+    for (int i=4; i<=scoreList.size(); i++)
+    {
+      scoreList.add(reader.next(i));
     }
 
     // while (reader.hasNext())
@@ -133,6 +137,13 @@ class Main {
     //Before writing to the file.txt, overwrite the original ArrayLists w/ temporary ArrayLists
     nameTemp.equals(nameList);
     scoreTemp = scoreList;
+
+    //Sort and output the sorted data
+    bubbleMethod();
+    System.out.println("Here is your sorted data:");
+    System.out.println(nameList);
+    System.out.println(scoreList);
+
 
     // Write ArrayList to file.txt, if the user chooses yes
     System.out.println("Would you like to save to the file?");

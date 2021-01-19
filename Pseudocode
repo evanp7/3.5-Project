@@ -65,9 +65,7 @@ class Main {
       if userKey == ArrayList.get(i)
       delete
 
-
-
-
     else
+    print original ArrayList
   }
 }
