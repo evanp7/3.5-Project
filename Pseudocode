@@ -60,6 +60,14 @@ class Main {
     write to file
     }
 
+    // For deleting
+    For i=0; i<arraylist.size(); i++
+      if userKey == ArrayList.get(i)
+      delete
+
+
+
+
     else
   }
 }

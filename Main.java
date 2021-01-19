@@ -6,20 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class Main {
-  static char[] bubbleMethod (char charList[])
+  static String[] bubbleMethod (ArrayList<String> nameList, ArrayList<Integer> scoreList)
   {
-    char tempSwap; // to hold swap
+    String [] nametempSwap; // to hold swap
+    int [] numtempSwap;
 
     // Loop to sort
-    for (int i=0; i<charList.length-1; i++)
+    for (int i=0; i<nameList.size(); i++)
     {
-      for (int j=0; j<charList.length-1; j++)
+      for (int j=0; j<nameList.size(); j++)
       {
-        if (Character.toLowerCase(charList[j])>Character.toLowerCase(charList[j+1]))
+        if (nameList.get(i)>nameList.get(j+1))
         {
-          tempSwap = charList[j];
-          charList[j] = charList[j+1];
-          charList[j+1] = tempSwap; 
+          tempSwap = nameList.get(j);
+          nameList.get(j) = nameList.get(j+1);
+          nameList.get(j+1) = tempSwap; 
         }
       }
     }
@@ -39,7 +40,7 @@ class Main {
     Scanner nameListReader = new Scanner (nameListFile); // File reader
     Scanner scoreListReader = new Scanner (scoreListFile);
 
-    // Name and score ArrayList
+    //ArrayList
     ArrayList<String> nameList = new ArrayList<String>();
     ArrayList<Integer> scoreList = new ArrayList<Integer>();
 
@@ -60,21 +61,13 @@ class Main {
         scoreTemp.add(reader.nextInt(index));
       }
     }
+
     // while (reader.hasNext())
     // {
     //   nameList.add(reader.next());
     // }
     // reader.close();
 
-
-    // Measure number of lines 
-    Scanner lineCounter = new Scanner (new FileReader("file.txt"));
-    int numofLines = 0;
-    While (lineCounter.hasNextLine());
-    {
-      lineCounter.nextLine();
-      numofLines ++;
-    }
 
     //Adding names and scores to temp ArrayList
     System.out.println ("Would you like to add names and scores?");
@@ -117,12 +110,34 @@ class Main {
       }
     }
     
-    // Write ArrayList to file.txt
 
-    // FileWriter nameListWriter = new FileWriter ("file.txt"); // File writer
-    // FileWriter scoreListWriter = new FileWriter ("file.txt");
-    
+    //Before writing to the file.txt, overwrite the original ArrayLists w/ temporary ArrayLists
+    nameTemp.equals(nameList);
+    scoreTemp = scoreList;
 
+    // Output
+    System.println()
+
+
+    // Write ArrayList to file.txt, if the user chooses yes
+    FileWriter nameListWriter = new FileWriter ("file.txt"); 
+    FileWriter scoreListWriter = new FileWriter ("file.txt");
+    for (i=0; i<nameList.size(); i++)
+    {
+      if (nameList(i)!=0) //Or should it be nameList.get(i)?
+      {
+        nameListWriter.write(nameTemp(i) + "\n");
+      }
+    }
+    nameListWriter.close();
+    for (j=0; j<scoreList.size(); j++)
+    {
+      if (scorelist.get(j)!=0)
+      {
+        scoreListWriter.write(scoreTemp(j) + "\n");
+      }
+    }
+    scoreListWriter.close();
 
     System.out.println(nameList);
     System.out.println(nameTemp);
