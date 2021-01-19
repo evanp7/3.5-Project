@@ -25,9 +25,10 @@ class Main {
       {
         if (nameList.get(i).compareTo(nameList.get(j+1)) > 0)
         {
+          int index = 0;
           nametempSwap = nameList.get(j);
-          nameList.set(j, nameList.get(j+1));
-          nameList.set(j+1, nametempSwap); 
+          nameList.set(j, nameList.get(index));
+          nameList.set(index, nametempSwap); 
         }
       }
     }
@@ -39,9 +40,10 @@ class Main {
       {
         if (scoreList.get(i) > scoreList.get(j+1))
         {
+          int index = 0;
           numtempSwap = scoreList.get(j);
-          scoreList.set(j, scoreList.get(j+1));
-          scoreList.set(j+1, numtempSwap); 
+          scoreList.set(j, scoreList.get(index));
+          scoreList.set(index, numtempSwap); 
         }
       }
     }
