@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -16,15 +16,15 @@ class Main {
     {
       for (int j=0; j<nameList.size(); j++)
       {
-        if (nameList.get(i)>nameList.get(j+1))
+        if (nameList.get(i).compareTo(nameList.get(j+1)) > 0)
         {
           tempSwap = nameList.get(j);
-          nameList.get(j) = nameList.get(j+1);
-          nameList.get(j+1) = tempSwap; 
+          nameList.set(j, nameList.get(j+1));
+          nameList.set(j+1, tempSwap); 
         }
       }
     }
-    return charList;
+    return nameList;
   }
 
   public static void main(String[] args) throws IOException {
@@ -49,16 +49,18 @@ class Main {
     ArrayList<Integer> scoreTemp = new ArrayList<Integer>(scoreList);   
 
 
-    // Writing file to temporary ArrayLists
     Scanner reader = new Scanner ("file.txt");
-    // For loop to write the file to the ArrayLists
+    // For loop to write the file to the ArrayLists and temp ArrayLists
     for (int i=0; i<=3; i++)
     {
       for (int index=i; index<=scoreList.size(); index++)
       {
         reader.nextInt();
+        nameList.add(reader.next(i));
+        scoreList.add(reader.nextInt(index));
         nameTemp.add(reader.next(i));
         scoreTemp.add(reader.nextInt(index));
+
       }
     }
 
@@ -115,14 +117,15 @@ class Main {
     nameTemp.equals(nameList);
     scoreTemp = scoreList;
 
-    // Output
-    System.println()
-
-
     // Write ArrayList to file.txt, if the user chooses yes
+    System.out.println("Would you like to save to the file?");
+    Answer = input.nextLine().toLowerCase();
+
+    if (Answer.equals(("Yes").toLowerCase()))
+    {
     FileWriter nameListWriter = new FileWriter ("file.txt"); 
     FileWriter scoreListWriter = new FileWriter ("file.txt");
-    for (i=0; i<nameList.size(); i++)
+    for (int i=0; i<nameList.size(); i++)
     {
       if (nameList(i)!=0) //Or should it be nameList.get(i)?
       {
@@ -130,7 +133,7 @@ class Main {
       }
     }
     nameListWriter.close();
-    for (j=0; j<scoreList.size(); j++)
+    for (int j=0; j<scoreList.size(); j++)
     {
       if (scorelist.get(j)!=0)
       {
@@ -138,49 +141,10 @@ class Main {
       }
     }
     scoreListWriter.close();
-
+    }
+    else 
     System.out.println(nameList);
     System.out.println(nameTemp);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 }
