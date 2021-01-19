@@ -18,14 +18,31 @@ class Main {
       {
         if (nameList.get(i).compareTo(nameList.get(j+1)) > 0)
         {
-          tempSwap = nameList.get(j);
+          nametempSwap = nameList.get(j);
           nameList.set(j, nameList.get(j+1));
-          nameList.set(j+1, tempSwap); 
+          nameList.set(j+1, nametempSwap); 
+        }
+      }
+    }
+    return nameList;
+  
+    // Loop to sort
+    for (int i=0; i<scoreList.size(); i++)
+    {
+      for (int j=0; j<scoreList.size(); j++)
+      {
+        if (scoreList.get(i) > scoreList.get(j+1))
+        {
+          numtempSwap = scoreList.get(j);
+          scoreList.set(j, scoreList.get(j+1));
+          scoreList.set(j+1, numtempSwap); 
         }
       }
     }
     return nameList;
   }
+
+
 
   public static void main(String[] args) throws IOException {
     // Variables
