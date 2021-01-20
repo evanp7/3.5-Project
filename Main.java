@@ -31,9 +31,7 @@ class Main {
         }
       }
     }
-    // String [] nameArray = new String [nameList.size()];
-    // nameArray = nameList.toArray(nameArray);
-    // return nameArray; // Does this workaround work for converting ArrayList to Array
+
     return nameList;
   }
 
