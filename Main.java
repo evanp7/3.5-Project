@@ -32,7 +32,7 @@ class Main {
         }
       }
     }
-    return nameList;
+    return nameList.toArray();
     // Loop to sort
     for (int i=0; i<scoreList.size(); i++) //scoreTemp?
     {
@@ -47,7 +47,7 @@ class Main {
         }
       }
     }
-    return scoreList;
+    return scoreList.toArray();
   }
 
 
@@ -79,20 +79,14 @@ class Main {
     for (int i=0; i<=3; i++)
     {
         reader.nextInt();
-        nameList.add(reader.next(i));
+        nameList.add(reader.next());
     }
 
     for (int i=4; i<=scoreList.size(); i++)
     {
-      scoreList.add(reader.next(i));
+      scoreList.add(reader.next());
     }
-
-    // while (reader.hasNext())
-    // {
-    //   nameList.add(reader.next());
-    // }
-    // reader.close();
-
+    reader.close();
 
     //Adding names and scores to temp ArrayList
     System.out.println ("Would you like to add names and scores?");
@@ -165,7 +159,7 @@ class Main {
     nameListWriter.close();
     for (int j=0; j<scoreList.size(); j++)
     {
-      if (scorelist.get(j)!=0)
+      if (scoreList.get(j)!=0)
       {
         scoreListWriter.write(scoreTemp(j) + "\n");
       }
