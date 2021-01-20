@@ -13,10 +13,9 @@ class Main {
   static ArrayList<Integer> scoreList;
   static ArrayList<Integer> scoreTemp;
 
-  static String[] bubbleMethod () //ArrayList<String> nameList, ArrayList<String> tempName
+  static ArrayList<String> bubbleMethod () //ArrayList<String> nameList, ArrayList<String> tempName
   {
     String nametempSwap; // to hold swap
-    int numtempSwap;
 
     // Loop to sort
     for (int i=0; i<nameList.size(); i++)
@@ -32,24 +31,33 @@ class Main {
         }
       }
     }
-    return nameList.toArray();
-    // Loop to sort
-    for (int i=0; i<scoreList.size(); i++) //scoreTemp?
-    {
-      for (int j=0; j<scoreList.size(); j++)
-      {
-        if (scoreList.get(i) > scoreList.get(j+1))
-        {
-          int index = 0;
-          numtempSwap = scoreList.get(j);
-          scoreList.set(j, scoreList.get(index));
-          scoreList.set(index, numtempSwap); 
-        }
-      }
-    }
-    return scoreList.toArray();
+    // String [] nameArray = new String [nameList.size()];
+    // nameArray = nameList.toArray(nameArray);
+    // return nameArray; // Does this workaround work for converting ArrayList to Array
+    return nameList;
   }
 
+    static ArrayList<Integer> bubblemethod2 ()
+    {
+      int numtempSwap;
+
+      // Loop to sort
+      for (int i=0; i<scoreList.size(); i++) //scoreTemp?
+      {
+        for (int j=0; j<scoreList.size(); j++)
+        {
+          if (scoreList.get(i) > scoreList.get(j+1))
+          {
+            int index = 4;
+            index ++;
+            numtempSwap = scoreList.get(j);
+            scoreList.set(j, scoreList.get(index));
+            scoreList.set(index, numtempSwap); 
+          }
+        }
+      }
+      return scoreList;
+    }
 
 
   public static void main(String[] args) throws IOException {
