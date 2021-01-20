@@ -147,6 +147,7 @@ class Main {
     System.out.println(nameList);
     System.out.println(scoreList);
 
+
     // Write ArrayList to file.txt, if the user chooses yes
     System.out.println("Would you like to save to the file?");
     Answer = input.nextLine().toLowerCase();
@@ -176,43 +177,5 @@ class Main {
     System.out.println(nameList);
     System.out.println(nameTemp);
 
-
-    // User entry delete
-    System.out.println("Would you like to delete entries?");
-    userInput = input.nextLine().toLowerCase();
-
-    if (userInput.equals(("Yes").toLowerCase()))
-    {
-      System.out.println("Please enter the name that you want to delete:");
-      userInput = input.nextLine().toLowerCase();
-      // Find matching entry and delete them
-      for (int i=0; i<pokemonList.size(); i++){
-        if (nameList.get(i).toLowerCase().indexOf(userInput) > -1)
-        {
-          pokemonList.remove(i);
-          while (pokemonList.get(i).toLowerCase().indexOf(userInput) > -1) {
-            pokemonList.remove(i);
-          }
-        }
-      } // End of loop
-
-      System.out.println("Please enter the score that you want to delete:");
-      userInput = input.nextLine().toLowerCase();
-      // To find Pokemons with matching letters
-      for (int i=0; i<pokemonList.size(); i++){
-        if (pokemonList.get(i).toLowerCase().indexOf(userInput) > -1)
-        {
-          pokemonList.remove(i);
-          while (pokemonList.get(i).toLowerCase().indexOf(userInput) > -1) {
-            pokemonList.remove(i);
-          }
-        }
-      } // End of loop
-    }
-
-
-
-
-    
   }
 }
