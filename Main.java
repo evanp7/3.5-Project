@@ -86,13 +86,14 @@ class Main {
     // For loop to write the file to the ArrayLists
     for (int i=0; i<=3; i++)
     {
-        reader.nextInt();
+        reader.next();
         nameList.add(reader.next());
     }
 
     for (int i=4; i<=scoreList.size(); i++)
     {
-      scoreList.add(reader.next()); //
+      reader.nextInt();
+      scoreList.add(reader.next());
     }
     reader.close();
 
@@ -159,7 +160,7 @@ class Main {
     FileWriter scoreListWriter = new FileWriter ("file.txt");
     for (int i=0; i<nameList.size(); i++)
     {
-      if (Integer.parseInt(nameList.get(i)) != 0) //Or should it be nameList.get(i)?
+      if (Integer.parseInt(nameList.get(i)) != 0)
       {
         nameListWriter.write(nameTemp.get(i) + "\n");
       }
