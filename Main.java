@@ -5,57 +5,53 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
-
 class Main {
-
-  static ArrayList<String> nameList; // Is this how class variable should be? and Method don't call for it in the ()?
+  static ArrayList<String> nameList; // Is this how class variables should be? and Method don't call for it in the ()?
   static ArrayList<String> nameTemp;
   static ArrayList<Integer> scoreList;
   static ArrayList<Integer> scoreTemp;
 
+
   static ArrayList<String> bubbleMethod () //ArrayList<String> nameList, ArrayList<String> tempName
   {
     String nametempSwap; // to hold swap
-
     // Loop to sort
-    for (int i=0; i<nameList.size(); i++)
+    for (int i=0; i<nameTemp.size(); i++)
     {
-      for (int j=0; j<nameList.size(); j++)
+      for (int j=0; j<nameTemp.size(); j++)
       {
-        if (nameList.get(i).compareTo(nameList.get(j+1)) > 0)
+        if (nameTemp.get(i).compareTo(nameTemp.get(j+1)) > 0)
         {
           int index = 0;
-          nametempSwap = nameList.get(j);
-          nameList.set(j, nameList.get(index));
-          nameList.set(index, nametempSwap); 
+          nametempSwap = nameTemp.get(j);
+          nameTemp.set(j, nameTemp.get(index));
+          nameTemp.set(index, nametempSwap); 
         }
       }
     }
-
     return nameList;
   }
 
-    static ArrayList<Integer> bubblemethod2 ()
+  static ArrayList<Integer> bubblemethod2 ()
+  {
+    int numtempSwap;
+    // Loop to sort
+    for (int i=0; i<scoreTemp.size(); i++) //scoreTemp?
     {
-      int numtempSwap;
-
-      // Loop to sort
-      for (int i=0; i<scoreList.size(); i++) //scoreTemp?
+      for (int j=0; j<scoreTemp.size(); j++)
       {
-        for (int j=0; j<scoreList.size(); j++)
+        if (scoretemp.get(i) > scoreTemp.get(j+1))
         {
-          if (scoreList.get(i) > scoreList.get(j+1))
-          {
-            int index = 4;
-            index ++;
-            numtempSwap = scoreList.get(j);
-            scoreList.set(j, scoreList.get(index));
-            scoreList.set(index, numtempSwap); 
-          }
+          int index = 4;
+          index ++;
+          numtempSwap = scoreTemp.get(j);
+          scoreTemp.set(j, scoreTemp.get(index));
+          scoreTemp.set(index, numtempSwap); 
         }
       }
-      return scoreList;
     }
+    return scoreList;
+  } // End of methods
 
 
   public static void main(String[] args) throws IOException {
@@ -64,17 +60,14 @@ class Main {
     String Answer;
     int scoreAnswer;
     Scanner input = new Scanner(System.in);
-
     // File & reader
     File nameListFile = new File ("file.txt"); // Declare file
     File scoreListFile = new File ("file.txt");
     Scanner nameListReader = new Scanner (nameListFile); // File reader
     Scanner scoreListReader = new Scanner (scoreListFile);
-
     //ArrayList
     ArrayList<String> nameList = new ArrayList<String>();
     ArrayList<Integer> scoreList = new ArrayList<Integer>();
-
     // Temporary ArrayList, copies content from original ArrayLists -- This should not share same reference as the original
     ArrayList<String> nameTemp = new ArrayList<String>(nameList);
     ArrayList<Integer> scoreTemp = new ArrayList<Integer>(scoreList);   
@@ -95,6 +88,7 @@ class Main {
     }
     reader.close();
 
+
     //Adding names and scores to temp ArrayList
     System.out.println ("Would you like to add names and scores?");
     Answer = input.nextLine().toLowerCase();
@@ -111,7 +105,6 @@ class Main {
     else
       System.out.println("You've exited the program. Here is the current list:");
       System.out.println(nameList);
-
 
     // Ask again to add to temp ArrayList
     boolean flag = true;
@@ -141,11 +134,13 @@ class Main {
     nameTemp.equals(nameList);
     scoreTemp = scoreList;
 
+
     //Sort and output the sorted data
     bubbleMethod();
     System.out.println("Here is your sorted data:");
     System.out.println(nameList);
     System.out.println(scoreList);
+
 
     // Write ArrayList to file.txt, if the user chooses yes
     System.out.println("Would you like to save to the file?");
@@ -173,8 +168,7 @@ class Main {
     scoreListWriter.close();
     }
     else 
-    System.out.println(nameList);
-    System.out.println(nameTemp);
+    System.out.println(nameTemp, scoreTemp);
 
 
     // User entry delete
@@ -209,10 +203,11 @@ class Main {
         }
       } // End of loop
     }
+    else
+      System.out.println(nameTemp, scoreTemp);
 
 
 
 
-    
   }
 }
