@@ -92,7 +92,7 @@ class Main {
 
     for (int i=4; i<=scoreList.size(); i++)
     {
-      scoreList.add(reader.next());
+      scoreList.add(reader.next()); //
     }
     reader.close();
 
@@ -159,9 +159,9 @@ class Main {
     FileWriter scoreListWriter = new FileWriter ("file.txt");
     for (int i=0; i<nameList.size(); i++)
     {
-      if (nameList(i)!=0) //Or should it be nameList.get(i)?
+      if (Integer.parseInt(nameList.get(i)) != 0) //Or should it be nameList.get(i)?
       {
-        nameListWriter.write(nameTemp(i) + "\n");
+        nameListWriter.write(nameTemp.get(i) + "\n");
       }
     }
     nameListWriter.close();
@@ -169,7 +169,7 @@ class Main {
     {
       if (scoreList.get(j)!=0)
       {
-        scoreListWriter.write(scoreTemp(j) + "\n");
+        scoreListWriter.write(scoreTemp.get(j) + "\n");
       }
     }
     scoreListWriter.close();
