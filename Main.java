@@ -11,7 +11,7 @@ class Main {
   static ArrayList<String> scoreList;
   static ArrayList<String> scoreTemp;
 
-  static ArrayList<String> bubbleMethod (ArrayList<String> nameTemp, ArrayList<String> scoreTemp)
+  static ArrayList<String> bubbleMethod (ArrayList<String> nameTemp)
   {
     String nametempSwap; // to hold swap
     // Loop to sort
@@ -31,7 +31,7 @@ class Main {
     return nameList;
   }
 
-  static ArrayList<String> bubblemethod2 ()
+  static ArrayList<String> bubblemethod2 (ArrayList<String> scoreTemp)
   {
     String numtempSwap;
     // Loop to sort
@@ -41,7 +41,7 @@ class Main {
       {
         if (scoreTemp.get(i).compareTo(scoreTemp.get(j+1)) > 0)
         {
-          int index = 4;
+          int indexNum = 4;
           index ++;
           numtempSwap = scoreTemp.get(j);
           scoreTemp.set(j, scoreTemp.get(index));
@@ -56,7 +56,7 @@ class Main {
     // Variables
     String userInput;
     String Answer;
-    int scoreAnswer;
+    String scoreAnswer;
     Scanner input = new Scanner(System.in);
     // File & reader
     File nameListFile = new File ("file.txt"); // Declare file
@@ -170,7 +170,7 @@ class Main {
 
 
     //Sort and output the sorted data
-    bubbleMethod();
+    bubbleMethod(nameTemp);
     bubbleMethod2();
     System.out.println("Here is your sorted data:");
     System.out.println(nameList);
@@ -187,7 +187,7 @@ class Main {
     FileWriter scoreListWriter = new FileWriter ("file.txt");
     for (int i=0; i<nameList.size(); i++)
     {
-      if (Integer.parseInt(nameList.get(i)) != 0)
+      if (nameList.get(i) != 0)
       {
         nameListWriter.write(nameList.get(i) + "\n");
       }
