@@ -8,17 +8,16 @@ import java.io.IOException;
 class Main {
   static ArrayList<String> nameList; // Is this how class variables should be? and Method don't call for it in the ()?
   static ArrayList<String> nameTemp;
-  static ArrayList<Integer> scoreList;
-  static ArrayList<Integer> scoreTemp;
+  static ArrayList<String> scoreList;
+  static ArrayList<String> scoreTemp;
 
-
-  static ArrayList<String> bubbleMethod () //ArrayList<String> nameList, ArrayList<String> tempName
+  static ArrayList<String> bubbleMethod (ArrayList<String> nameTemp, ArrayList<String> scoreTemp)
   {
     String nametempSwap; // to hold swap
     // Loop to sort
-    for (int i=0; i<nameTemp.size(); i++)
+    for (int i=0; i<nameTemp.size()-1; i++)
     {
-      for (int j=0; j<nameTemp.size(); j++)
+      for (int j=0; j<nameTemp.size()-1; j++)
       {
         if (nameTemp.get(i).compareTo(nameTemp.get(j+1)) > 0)
         {
@@ -32,15 +31,15 @@ class Main {
     return nameList;
   }
 
-  static ArrayList<Integer> bubblemethod2 ()
+  static ArrayList<String> bubblemethod2 ()
   {
-    int numtempSwap;
+    String numtempSwap;
     // Loop to sort
     for (int i=0; i<scoreTemp.size(); i++) //scoreTemp?
     {
       for (int j=0; j<scoreTemp.size(); j++)
       {
-        if (scoretemp.get(i) > scoreTemp.get(j+1))
+        if (scoreTemp.get(i).compareTo(scoreTemp.get(j+1)) > 0)
         {
           int index = 4;
           index ++;
@@ -52,7 +51,6 @@ class Main {
     }
     return scoreList;
   } // End of methods
-
 
   public static void main(String[] args) throws IOException {
     // Variables
@@ -67,10 +65,10 @@ class Main {
     Scanner scoreListReader = new Scanner (scoreListFile);
     //ArrayList
     ArrayList<String> nameList = new ArrayList<String>();
-    ArrayList<Integer> scoreList = new ArrayList<Integer>();
+    ArrayList<String> scoreList = new ArrayList<String>();
     // Temporary ArrayList, copies content from original ArrayLists -- This should not share same reference as the original
     ArrayList<String> nameTemp = new ArrayList<String>(nameList);
-    ArrayList<Integer> scoreTemp = new ArrayList<Integer>(scoreList);   
+    ArrayList<String> scoreTemp = new ArrayList<String>(scoreList);
 
 
     Scanner reader = new Scanner ("file.txt");
@@ -83,7 +81,7 @@ class Main {
 
     for (int i=4; i<=scoreList.size(); i++)
     {
-      reader.nextInt();
+      reader.next();
       scoreList.add(reader.next());
     }
     reader.close();
@@ -92,15 +90,14 @@ class Main {
     //Adding names and scores to temp ArrayList
     System.out.println ("Would you like to add names and scores?");
     Answer = input.nextLine().toLowerCase();
-    
     if (Answer.equals(("Yes").toLowerCase()))
     {
       System.out.println("Enter the name");
       Answer = input.nextLine().toLowerCase();
-      nameTemp.add(Answer);
+      nameTemp.add(Answer + "\n");
       System.out.println("Enter the score");
-      scoreAnswer = Integer.parseInt(input.nextLine());
-      scoreTemp.add(scoreAnswer);
+      scoreAnswer = input.nextLine();
+      scoreTemp.add(scoreAnswer + "\n");
     }
     else
       System.out.println("You've exited the program. Here is the current list:");
@@ -117,10 +114,10 @@ class Main {
       {
         System.out.println("Enter the name");
         Answer = input.nextLine().toLowerCase();
-        nameTemp.add(Answer);
+        nameTemp.add(Answer + "\n");
         System.out.println("Enter the score");
-        scoreAnswer = Integer.parseInt(input.nextLine());
-        scoreTemp.add(scoreAnswer);
+        scoreAnswer = input.nextLine();
+        scoreTemp.add(scoreAnswer + "\n");
         flag = true;
       }
       else
@@ -128,21 +125,59 @@ class Main {
         flag = false;
       }
     }
-    
 
-    //Before writing to the file.txt, overwrite the original ArrayLists w/ temporary ArrayLists
-    nameTemp.equals(nameList);
-    scoreTemp = scoreList;
+
+    // User entry delete
+    System.out.println("Would you like to delete entries?");
+    userInput = input.nextLine().toLowerCase();
+
+    if (userInput.equals(("Yes").toLowerCase()))
+    {
+      System.out.println("Please enter the name that you want to delete:");
+      Answer = input.nextLine().toLowerCase();
+      // Find matching entry and delete
+      for (int i=0; i<nameTemp.size(); i++){
+        if (nameTemp.get(i).toLowerCase().indexOf(userInput) > -1)
+        {
+          nameTemp.remove(i);
+          while (nameTemp.get(i).toLowerCase().indexOf(userInput) > -1) {
+            nameTemp.remove(i);
+          }
+        }
+      } // End of loop
+
+      System.out.println("Please enter the score that you want to delete:");
+      scoreAnswer = Integer.parseInt(input.nextLine());
+      // Find matching entry and delete them
+      for (int i=0; i<scoreTemp.size(); i++){
+        if (scoreTemp.get(i).toLowerCase().indexOf(userInput) > -1)
+        {
+          scoreTemp.remove(i);
+          while (scoreTemp.get(i).toLowerCase().indexOf(userInput) > -1) {
+            scoreTemp.remove(i);
+          }
+        }
+      } // End of loop
+    }
+    else
+      System.out.println(nameTemp);
+      System.out.println(scoreTemp);
+
+
+    //Overwrite
+    nameList.equals(nameTemp);
+    scoreList = scoreTemp;
 
 
     //Sort and output the sorted data
     bubbleMethod();
+    bubbleMethod2();
     System.out.println("Here is your sorted data:");
     System.out.println(nameList);
     System.out.println(scoreList);
 
 
-    // Write ArrayList to file.txt, if the user chooses yes
+    // Write ArrayList to file.txt
     System.out.println("Would you like to save to the file?");
     Answer = input.nextLine().toLowerCase();
 
@@ -154,7 +189,7 @@ class Main {
     {
       if (Integer.parseInt(nameList.get(i)) != 0)
       {
-        nameListWriter.write(nameTemp.get(i) + "\n");
+        nameListWriter.write(nameList.get(i) + "\n");
       }
     }
     nameListWriter.close();
@@ -162,49 +197,15 @@ class Main {
     {
       if (scoreList.get(j)!=0)
       {
-        scoreListWriter.write(scoreTemp.get(j) + "\n");
+        scoreListWriter.write(scoreList.get(j) + "\n");
       }
     }
     scoreListWriter.close();
     }
     else 
-    System.out.println(nameTemp, scoreTemp);
+      System.out.println(scoreList);
+      System.out.println(scoreList);
 
-
-    // User entry delete
-    System.out.println("Would you like to delete entries?");
-    userInput = input.nextLine().toLowerCase();
-
-    if (userInput.equals(("Yes").toLowerCase()))
-    {
-      System.out.println("Please enter the name that you want to delete:");
-      userInput = input.nextLine().toLowerCase();
-      // Find matching entry and delete them
-      for (int i=0; i<pokemonList.size(); i++){
-        if (nameList.get(i).toLowerCase().indexOf(userInput) > -1)
-        {
-          pokemonList.remove(i);
-          while (pokemonList.get(i).toLowerCase().indexOf(userInput) > -1) {
-            pokemonList.remove(i);
-          }
-        }
-      } // End of loop
-
-      System.out.println("Please enter the score that you want to delete:");
-      userInput = input.nextLine().toLowerCase();
-      // To find Pokemons with matching letters
-      for (int i=0; i<pokemonList.size(); i++){
-        if (pokemonList.get(i).toLowerCase().indexOf(userInput) > -1)
-        {
-          pokemonList.remove(i);
-          while (pokemonList.get(i).toLowerCase().indexOf(userInput) > -1) {
-            pokemonList.remove(i);
-          }
-        }
-      } // End of loop
-    }
-    else
-      System.out.println(nameTemp, scoreTemp);
 
 
 
