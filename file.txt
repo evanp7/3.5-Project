@@ -1,8 +1,12 @@
 Felix
 Sammy
 Geo
-Mike
-95
+Nathan
+joe
+aiden
 90
+95
+80
 85
-89
+100
+0

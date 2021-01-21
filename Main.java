@@ -6,46 +6,44 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class Main {
-  static ArrayList<String> nameList; // Is this how class variables should be? and Method don't call for it in the ()?
-  static ArrayList<String> nameTemp;
-  static ArrayList<String> scoreList;
-  static ArrayList<String> scoreTemp;
+  static ArrayList<String> nameList = new ArrayList<String>(); // Is this how class variables should be? and Method don't call for it in the ()?
+  static ArrayList<String> scoreList = new ArrayList<String>();
 
-  static ArrayList<String> bubbleMethod (ArrayList<String> nameTemp)
+  static ArrayList<String> bubbleMethod (ArrayList<String> nameList)
   {
-    String nametempSwap; // to hold swap
+    String nameListSwap; // to hold swap
     // Loop to sort
-    for (int i=0; i<nameTemp.size()-1; i++)
+    for (int i=0; i<nameList.size()-1; i++)
     {
-      for (int j=0; j<nameTemp.size()-1; j++)
+      for (int j=0; j<nameList.size()-1; j++)
       {
-        if (nameTemp.get(i).compareTo(nameTemp.get(j+1)) > 0)
+        if (nameList.get(i).compareTo(nameList.get(j+1)) > 0)
         {
           int index = 0;
-          nametempSwap = nameTemp.get(j);
-          nameTemp.set(j, nameTemp.get(index));
-          nameTemp.set(index, nametempSwap); 
+          nameListSwap = nameList.get(j);
+          nameList.set(j, nameList.get(index));
+          nameList.set(index, nameListSwap); 
         }
       }
     }
     return nameList;
   }
 
-  static ArrayList<String> bubblemethod2 (ArrayList<String> scoreTemp)
+  static ArrayList<String> bubbleMethodNum (ArrayList<String> scoreList)
   {
     String numtempSwap;
     // Loop to sort
-    for (int i=0; i<scoreTemp.size(); i++) //scoreTemp?
+    for (int i=0; i<scoreList.size(); i++) //scoreList?
     {
-      for (int j=0; j<scoreTemp.size(); j++)
+      for (int j=0; j<scoreList.size(); j++)
       {
-        if (scoreTemp.get(i).compareTo(scoreTemp.get(j+1)) > 0)
+        if (scoreList.get(i).compareTo(scoreList.get(j+1)) > 0)
         {
           int indexNum = 4;
-          index ++;
-          numtempSwap = scoreTemp.get(j);
-          scoreTemp.set(j, scoreTemp.get(index));
-          scoreTemp.set(index, numtempSwap); 
+          indexNum ++;
+          numtempSwap = scoreList.get(j);
+          scoreList.set(j, scoreList.get(indexNum));
+          scoreList.set(indexNum, numtempSwap); 
         }
       }
     }
@@ -57,32 +55,33 @@ class Main {
     String userInput;
     String Answer;
     String scoreAnswer;
+    boolean flag = true;
+    int fileLength = 0;
     Scanner input = new Scanner(System.in);
     // File & reader
-    File nameListFile = new File ("file.txt"); // Declare file
-    File scoreListFile = new File ("file.txt");
-    Scanner nameListReader = new Scanner (nameListFile); // File reader
-    Scanner scoreListReader = new Scanner (scoreListFile);
-    //ArrayList
-    ArrayList<String> nameList = new ArrayList<String>();
-    ArrayList<String> scoreList = new ArrayList<String>();
-    // Temporary ArrayList, copies content from original ArrayLists -- This should not share same reference as the original
-    ArrayList<String> nameTemp = new ArrayList<String>(nameList);
-    ArrayList<String> scoreTemp = new ArrayList<String>(scoreList);
+    File ListFile = new File ("file.txt"); // Declare file
+    Scanner reader = new Scanner (ListFile); // File reader
 
 
-    Scanner reader = new Scanner ("file.txt");
-    // For loop to write the file to the ArrayLists
-    for (int i=0; i<=3; i++)
+    // While loop for file length
+    while (reader.hasNextLine())
     {
-        reader.next();
-        nameList.add(reader.next());
+      fileLength = fileLength + 1;
+      reader.nextLine();
+    }
+    reader.close();
+    reader = new Scanner(ListFile);
+
+
+    // For loop to write the file to the ArrayLists
+    for (int i=0; i<fileLength/2; i++)
+    {
+      nameList.add(reader.nextLine());
     }
 
-    for (int i=4; i<=scoreList.size(); i++)
+    for (int i=0; i<fileLength/2; i++)
     {
-      reader.next();
-      scoreList.add(reader.next());
+      scoreList.add(reader.nextLine());
     }
     reader.close();
 
@@ -93,18 +92,19 @@ class Main {
     if (Answer.equals(("Yes").toLowerCase()))
     {
       System.out.println("Enter the name");
-      Answer = input.nextLine().toLowerCase();
-      nameTemp.add(Answer + "\n");
+      Answer = input.nextLine();
+      nameList.add(Answer);
       System.out.println("Enter the score");
       scoreAnswer = input.nextLine();
-      scoreTemp.add(scoreAnswer + "\n");
+      scoreList.add(scoreAnswer);
     }
     else
+    {
       System.out.println("You've exited the program. Here is the current list:");
       System.out.println(nameList);
-
+      flag = false;
+    }
     // Ask again to add to temp ArrayList
-    boolean flag = true;
     while (flag)
     {
       System.out.println("Would you like to add more names and score?");
@@ -114,10 +114,10 @@ class Main {
       {
         System.out.println("Enter the name");
         Answer = input.nextLine().toLowerCase();
-        nameTemp.add(Answer + "\n");
+        nameList.add(Answer + "\n");
         System.out.println("Enter the score");
         scoreAnswer = input.nextLine();
-        scoreTemp.add(scoreAnswer + "\n");
+        scoreList.add(scoreAnswer + "\n");
         flag = true;
       }
       else
@@ -131,47 +131,41 @@ class Main {
     System.out.println("Would you like to delete entries?");
     userInput = input.nextLine().toLowerCase();
 
+    int index = 0;
     if (userInput.equals(("Yes").toLowerCase()))
     {
       System.out.println("Please enter the name that you want to delete:");
       Answer = input.nextLine().toLowerCase();
       // Find matching entry and delete
-      for (int i=0; i<nameTemp.size(); i++){
-        if (nameTemp.get(i).toLowerCase().indexOf(userInput) > -1)
+      while (index < nameList.size())
+      {
+        if (nameList.get(index).toLowerCase().equals(userInput))
         {
-          nameTemp.remove(i);
-          while (nameTemp.get(i).toLowerCase().indexOf(userInput) > -1) {
-            nameTemp.remove(i);
+          nameList.remove(index);
+          scoreList.remove(index);
+          while (nameList.get(index).toLowerCase().equals(userInput))
+          {
+            nameList.remove(index);
+            scoreList.remove(index);
           }
         }
-      } // End of loop
-
-      System.out.println("Please enter the score that you want to delete:");
-      scoreAnswer = Integer.parseInt(input.nextLine());
-      // Find matching entry and delete them
-      for (int i=0; i<scoreTemp.size(); i++){
-        if (scoreTemp.get(i).toLowerCase().indexOf(userInput) > -1)
-        {
-          scoreTemp.remove(i);
-          while (scoreTemp.get(i).toLowerCase().indexOf(userInput) > -1) {
-            scoreTemp.remove(i);
-          }
-        }
+      index = index + 1;
       } // End of loop
     }
     else
-      System.out.println(nameTemp);
-      System.out.println(scoreTemp);
-
+    {
+      System.out.println(nameList);
+      System.out.println(scoreList);
+    }
 
     //Overwrite
-    nameList.equals(nameTemp);
-    scoreList = scoreTemp;
+    nameList.equals(nameList);
+    scoreList = scoreList;
 
 
     //Sort and output the sorted data
-    bubbleMethod(nameTemp);
-    bubbleMethod2();
+    // bubbleMethod(nameList);
+    // bubbleMethodNum(scoreList);
     System.out.println("Here is your sorted data:");
     System.out.println(nameList);
     System.out.println(scoreList);
@@ -183,32 +177,17 @@ class Main {
 
     if (Answer.equals(("Yes").toLowerCase()))
     {
-    FileWriter nameListWriter = new FileWriter ("file.txt"); 
-    FileWriter scoreListWriter = new FileWriter ("file.txt");
+    FileWriter ListWriter = new FileWriter ("file.txt"); 
     for (int i=0; i<nameList.size(); i++)
     {
-      if (nameList.get(i) != 0)
-      {
-        nameListWriter.write(nameList.get(i) + "\n");
-      }
+      ListWriter.write(nameList.get(i) + "\n");
     }
-    nameListWriter.close();
     for (int j=0; j<scoreList.size(); j++)
     {
-      if (scoreList.get(j)!=0)
-      {
-        scoreListWriter.write(scoreList.get(j) + "\n");
-      }
+      ListWriter.write(scoreList.get(j) + "\n");
     }
-    scoreListWriter.close();
+    ListWriter.close();
     }
-    else 
-      System.out.println(scoreList);
-      System.out.println(scoreList);
-
-
-
-
 
   }
 }
