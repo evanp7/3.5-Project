@@ -12,20 +12,29 @@ class Main {
   static ArrayList<Integer> scoreTemp;
 
 
-  static ArrayList<String> bubbleMethod () //ArrayList<String> nameList, ArrayList<String> tempName
+  static ArrayList<String> bubbleMethod (ArrayList<String> nameList, ArrayList<String> scoreList)
   {
-    String nametempSwap; // to hold swap
+    String nameListSwap; // to hold swap
+    String numtempSwap;
     // Loop to sort
-    for (int i=0; i<nameTemp.size(); i++)
+    for (int i=0; i<nameList.size()-1; i++)
     {
-      for (int j=0; j<nameTemp.size(); j++)
+      for (int j=0; j<nameList.size()-1-i; j++) 
       {
-        if (nameTemp.get(i).compareTo(nameTemp.get(j+1)) > 0)
+        if (nameList.get(j).compareTo(nameList.get(j+1)) > 0)
         {
-          int index = 0;
-          nametempSwap = nameTemp.get(j);
-          nameTemp.set(j, nameTemp.get(index));
-          nameTemp.set(index, nametempSwap); 
+          // int index = 0;
+          // nameListSwap = nameList.get(j);
+          // nameList.set(j, nameList.get(index));
+          // nameList.set(index, nameListSwap); 
+          nameListSwap = nameList.get(j);
+          nameList.set(j, nameList.get(j+1));
+          nameList.set(j+1, nameListSwap);
+
+          numtempSwap = scoreList.get(j);
+          scoreList.set(j, scoreList.get(j+1));
+          scoreList.set(j+1, numtempSwap);
+
         }
       }
     }

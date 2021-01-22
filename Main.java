@@ -6,49 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class Main {
-  static ArrayList<String> nameList = new ArrayList<String>(); // Is this how class variables should be? and Method don't call for it in the ()?
+  static ArrayList<String> nameList = new ArrayList<String>();
   static ArrayList<String> scoreList = new ArrayList<String>();
-
-  static ArrayList<String> bubbleMethod (ArrayList<String> nameList)
-  {
-    String nameListSwap; // to hold swap
-    // Loop to sort
-    for (int i=0; i<nameList.size()-1; i++)
-    {
-      for (int j=0; j<nameList.size()-1; j++)
-      {
-        if (nameList.get(i).compareTo(nameList.get(j+1)) > 0)
-        {
-          int index = 0;
-          nameListSwap = nameList.get(j);
-          nameList.set(j, nameList.get(index));
-          nameList.set(index, nameListSwap); 
-        }
-      }
-    }
-    return nameList;
-  }
-
-  static ArrayList<String> bubbleMethodNum (ArrayList<String> scoreList)
-  {
-    String numtempSwap;
-    // Loop to sort
-    for (int i=0; i<scoreList.size(); i++) //scoreList?
-    {
-      for (int j=0; j<scoreList.size(); j++)
-      {
-        if (scoreList.get(i).compareTo(scoreList.get(j+1)) > 0)
-        {
-          int indexNum = 4;
-          indexNum ++;
-          numtempSwap = scoreList.get(j);
-          scoreList.set(j, scoreList.get(indexNum));
-          scoreList.set(indexNum, numtempSwap); 
-        }
-      }
-    }
-    return scoreList;
-  } // End of methods
 
   public static void main(String[] args) throws IOException {
     // Variables
@@ -84,9 +43,9 @@ class Main {
       scoreList.add(reader.nextLine());
     }
     reader.close();
+    
 
-
-    //Adding names and scores to temp ArrayList
+    //Adding names and scores to ArrayList
     System.out.println ("Would you like to add names and scores?");
     Answer = input.nextLine().toLowerCase();
     if (Answer.equals(("Yes").toLowerCase()))
@@ -104,7 +63,7 @@ class Main {
       System.out.println(nameList);
       flag = false;
     }
-    // Ask again to add to temp ArrayList
+    // Ask again to add to ArrayList
     while (flag)
     {
       System.out.println("Would you like to add more names and score?");
@@ -113,11 +72,11 @@ class Main {
       if (Answer.equals(("Yes").toLowerCase()))
       {
         System.out.println("Enter the name");
-        Answer = input.nextLine().toLowerCase();
-        nameList.add(Answer + "\n");
+        Answer = input.nextLine();
+        nameList.add(Answer);
         System.out.println("Enter the score");
         scoreAnswer = input.nextLine();
-        scoreList.add(scoreAnswer + "\n");
+        scoreList.add(scoreAnswer);
         flag = true;
       }
       else
@@ -130,20 +89,20 @@ class Main {
     // User entry delete
     System.out.println("Would you like to delete entries?");
     userInput = input.nextLine().toLowerCase();
-
     int index = 0;
     if (userInput.equals(("Yes").toLowerCase()))
     {
       System.out.println("Please enter the name that you want to delete:");
-      Answer = input.nextLine().toLowerCase();
+      userInput = input.nextLine();
       // Find matching entry and delete
       while (index < nameList.size())
       {
-        if (nameList.get(index).toLowerCase().equals(userInput))
+        if (nameList.get(index).equals(userInput))
         {
+          System.out.println("entered");
           nameList.remove(index);
           scoreList.remove(index);
-          while (nameList.get(index).toLowerCase().equals(userInput))
+          while (index < nameList.size() && nameList.get(index).equals(userInput))
           {
             nameList.remove(index);
             scoreList.remove(index);
@@ -158,14 +117,27 @@ class Main {
       System.out.println(scoreList);
     }
 
-    //Overwrite
-    nameList.equals(nameList);
-    scoreList = scoreList;
 
+    //Sort and output the sorted data -- Instead of calling method, doing it this way will be able to return both nameList and scoreList
+    String nameListSwap; // to hold swap
+    String numtempSwap;
+    // Loop to sort
+    for (int i=0; i<nameList.size()-1; i++)
+    {
+      for (int j=0; j<nameList.size()-1-i; j++) 
+      {
+        if (nameList.get(j).compareTo(nameList.get(j+1)) > 0)
+        {
+          nameListSwap = nameList.get(j);
+          nameList.set(j, nameList.get(j+1));
+          nameList.set(j+1, nameListSwap);
 
-    //Sort and output the sorted data
-    // bubbleMethod(nameList);
-    // bubbleMethodNum(scoreList);
+          numtempSwap = scoreList.get(j);
+          scoreList.set(j, scoreList.get(j+1));
+          scoreList.set(j+1, numtempSwap);
+        }
+      }
+    }
     System.out.println("Here is your sorted data:");
     System.out.println(nameList);
     System.out.println(scoreList);
@@ -188,6 +160,7 @@ class Main {
     }
     ListWriter.close();
     }
+
 
   }
 }
